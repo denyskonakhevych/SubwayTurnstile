@@ -1,7 +1,5 @@
 package pass;
 
-import passages.*;
-
 public class AccumulativePass extends Pass {
 
 	private float balance;
@@ -46,11 +44,6 @@ public class AccumulativePass extends Pass {
 		} else {
 			balance -= pricePerPassage;
 		}
-	}
-	
-	@Override
-	public Passage makePassage() {
-		return new AccumulativePassage(ID, TYPE, balance, balance);
 	}
 
 	@Override

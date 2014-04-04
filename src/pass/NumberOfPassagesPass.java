@@ -1,8 +1,5 @@
 package pass;
 
-import passages.NumberOfPassagesPassage;
-import passages.Passage;
-
 public class NumberOfPassagesPass extends Pass {
 
 	private int numberOfPassegesLeft;
@@ -14,11 +11,6 @@ public class NumberOfPassagesPass extends Pass {
 	
 	public int getNumberOfPasseges() {
 		return numberOfPassegesLeft;
-	}
-	
-	@Override
-	public Passage makePassage() {
-		return new NumberOfPassagesPassage(ID, TYPE, numberOfPassegesLeft);
 	}
 
 	@Override

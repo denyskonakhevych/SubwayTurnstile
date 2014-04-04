@@ -1,18 +1,24 @@
 package pass;
 
-import passages.Passage;
-
 public abstract class Pass {
 
 	private int passageCount;
 	
-	public final int ID;
+	private final int id;
 	
-	public final PassType TYPE;
+	private final PassType type;
 	
 	Pass(int id, PassType type) {
-		this.ID = id;
-		this.TYPE = type;
+		this.id = id;
+		this.type = type;
+	}
+	
+	public final PassType getPassType() {
+		return type;
+	}
+	
+	public final int getPassId() {
+		return id;
 	}
 	
 	public void grantPassage() throws IllegalAccessException {
@@ -21,8 +27,6 @@ public abstract class Pass {
 	}
 	
 	public abstract void validate() throws IllegalAccessException;
-	
-	public abstract Passage makePassage();
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -33,10 +37,10 @@ public abstract class Pass {
 			return false;
 		}
 		Pass that = (Pass) obj;
-		if (TYPE != that.TYPE) {
+		if (type != that.type) {
 			return false;
 		}
-		if (ID != that.ID) {
+		if (id != that.id) {
 			return false;
 		}
 		return true;
@@ -44,6 +48,6 @@ public abstract class Pass {
 
 	@Override
 	public String toString() {
-		return "ID: " + ID + " TYPE: " + TYPE + " PASSAGES DONE: " + passageCount;
+		return "ID: " + id + " TYPE: " + type + " PASSAGES DONE: " + passageCount;
 	}
 }

@@ -90,4 +90,64 @@ public class TourniquetTest {
 		Tourniquet tourniquet = new Tourniquet();
 		assertFalse(tourniquet.checkPass(pass));
 	}
+	
+	@Test
+	public void testTotalNumberOfPassages() {
+		AbstractPassFactory apf = new AccumulativePassFactory();
+		Pass pass = apf.getPass();
+		Tourniquet tourniquet = new Tourniquet();
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		assertEquals(4, tourniquet.getPassagesNumber());
+	}
+	
+	@Test
+	public void testNumberOfPassagesByPassageSuccession() {
+		AbstractPassFactory apf = new AccumulativePassFactory();
+		Pass pass = apf.getPass();
+		Tourniquet tourniquet = new Tourniquet();
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		
+		final float RAISE = 50.0f;
+		AccumulativePass accPass = (AccumulativePass) apf.getPass();
+		accPass.increaseBalance(RAISE);
+		tourniquet.checkPass(accPass);
+		tourniquet.checkPass(accPass);
+		
+		assertEquals(6, tourniquet.getPassagesNumber());
+		assertEquals(4, tourniquet.getPassagesNumber(false));
+		assertEquals(2, tourniquet.getPassagesNumber(true));
+	}
+	
+	@Test
+	public void testNumberOfPassagesByPassageSuccessionAndPassType() {
+		AbstractPassFactory apf = new AccumulativePassFactory();
+		Pass pass = apf.getPass();
+		Tourniquet tourniquet = new Tourniquet();
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		
+		final float RAISE = 50.0f;
+		AccumulativePass accPass = (AccumulativePass) apf.getPass();
+		accPass.increaseBalance(RAISE);
+		tourniquet.checkPass(accPass);
+		tourniquet.checkPass(accPass);
+		
+		apf = new NumberOfPassagesPassFactory(PassType.PASSAGES_20);
+		pass = apf.getPass();
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		tourniquet.checkPass(pass);
+		
+		assertEquals(9, tourniquet.getPassagesNumber());
+		assertEquals(0, tourniquet.getPassagesNumber(false, PassType.PASSAGES_20));
+		assertEquals(3, tourniquet.getPassagesNumber(true, PassType.PASSAGES_20));
+	}
 }

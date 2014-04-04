@@ -2,9 +2,6 @@ package pass;
 
 import java.util.Calendar;
 
-import passages.DatePassage;
-import passages.Passage;
-
 public class DatePass extends Pass {
 
 	protected final Calendar startDate;
@@ -36,11 +33,12 @@ public class DatePass extends Pass {
 			throw new IllegalAccessException(message);
 		}
 	}
-	
+	/*
 	@Override
 	public Passage makePassage() {
-		return new DatePassage(ID, TYPE, startDate, endDate);
+		return new DatePassage(getPassId(), getPassType());
 	}
+	*/
 
 	@Override
 	public String toString() {
