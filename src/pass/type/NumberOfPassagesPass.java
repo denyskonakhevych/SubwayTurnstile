@@ -1,10 +1,12 @@
-package pass;
+package pass.type;
+
+import pass.passtype.NumberOfPassagesPassType;
 
 public class NumberOfPassagesPass extends Pass {
 
 	private int numberOfPassegesLeft;
 	
-	public NumberOfPassagesPass(int id, PassType passType) {
+	public NumberOfPassagesPass(int id, NumberOfPassagesPassType passType) {
 		super(id, passType);
 		this.numberOfPassegesLeft = passType.getValue();
 	}
@@ -14,10 +16,10 @@ public class NumberOfPassagesPass extends Pass {
 	}
 
 	@Override
-	public void validate() throws IllegalAccessException {
+	public void validate() {
 		if (numberOfPassegesLeft < 1) {
 			String message = "No more passeges left!";
-			throw new IllegalAccessException(message);
+			throw new IllegalStateException(message);
 		} else {
 			numberOfPassegesLeft--;
 		}

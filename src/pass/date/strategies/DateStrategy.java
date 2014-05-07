@@ -2,7 +2,7 @@ package pass.date.strategies;
 
 import java.util.Calendar;
 
-import pass.Pass;
+import pass.type.Pass;
 
 public abstract class DateStrategy {
 

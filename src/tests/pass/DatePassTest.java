@@ -1,14 +1,14 @@
-package tests;
+package tests.pass;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import pass.DatePass;
-import pass.PassType;
+import pass.passtype.TermPassType;
+import pass.type.DatePass;
 
 public class DatePassTest {
 
@@ -23,7 +23,7 @@ public class DatePassTest {
 		startDate.set(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), 1, 0, 0, 0);
 		endDate = Calendar.getInstance();
 		endDate.set(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH), startDate.getMaximum(Calendar.DATE), 23, 59, 59);
-		pass = new DatePass(0, PassType.MONTH_STUDENT, startDate, endDate);
+		pass = new DatePass(0, TermPassType.MONTH_STUDENT, startDate, endDate);
 	}
 
 	@Test
@@ -37,24 +37,17 @@ public class DatePassTest {
 	}
 	
 	@Test
-	public void testValidateOk() throws IllegalAccessException {
+	public void testValidateOk() {
 		pass.validate();
 	}
 	
-	@Test(expected = IllegalAccessException.class)
-	public void testValidateFalse() throws IllegalAccessException {	
+	@Test(expected = IllegalStateException.class)
+	public void testValidateFalse() {	
 		startDate = Calendar.getInstance();
 		startDate.set(1980, Calendar.MARCH, 1, 0, 0, 0);
 		endDate = Calendar.getInstance();
 		endDate.set(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH), startDate.getMaximum(Calendar.DATE), 23, 59, 59);
-		pass = new DatePass(0, PassType.MONTH_STUDENT, startDate, endDate);
+		pass = new DatePass(0, TermPassType.MONTH_STUDENT, startDate, endDate);
 		pass.validate();
 	}
-	
-	@Test
-	public void testToString() {
-		String desired = "ID: 0 TYPE: MONTH_STUDENT PASSAGES DONE: 0 startDate: Sat Mar 01 00:00:00 EET 2014 endDate: Mon Mar 31 23:59:59 EEST 2014";
-		assertEquals(pass.toString(), desired);
-	}
-
 }

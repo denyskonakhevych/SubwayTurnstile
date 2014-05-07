@@ -1,7 +1,7 @@
 package pass.passfactories;
 
 import pass.date.strategies.DateStrategy;
-import pass.Pass;
+import pass.type.Pass;
 
 public class DatePassFactory extends AbstractPassFactory {
 
@@ -11,7 +11,7 @@ public class DatePassFactory extends AbstractPassFactory {
 		if (dateStrategy != null) {
 			this.dateStrategy = dateStrategy;
 		} else {
-			throw new IllegalArgumentException("Pass type argument exception: " + dateStrategy);
+			throw new NullPointerException("Pass type argument exception: " + dateStrategy);
 		}
 	}
 

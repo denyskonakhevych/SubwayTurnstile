@@ -1,6 +1,6 @@
 package pass.passfactories;
 
-import pass.Pass;
+import pass.type.Pass;
 
 
 public abstract class AbstractPassFactory {

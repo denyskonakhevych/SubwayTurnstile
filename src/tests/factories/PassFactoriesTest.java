@@ -1,17 +1,11 @@
-package tests;
+package tests.factories;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import pass.AccumulativePass;
-import pass.DatePass;
-import pass.NumberOfPassagesPass;
-import pass.Pass;
-import pass.PassType;
 import pass.date.strategies.DateStrategy;
 import pass.date.strategies.MonthStrategy;
 import pass.date.strategies.NDaysStrategy;
@@ -19,19 +13,28 @@ import pass.passfactories.AbstractPassFactory;
 import pass.passfactories.AccumulativePassFactory;
 import pass.passfactories.DatePassFactory;
 import pass.passfactories.NumberOfPassagesPassFactory;
+import pass.passtype.NumberOfPassagesPassType;
+import pass.passtype.TermPassType;
+import pass.type.AccumulativePass;
+import pass.type.DatePass;
+import pass.type.NumberOfPassagesPass;
+import pass.type.Pass;
 
 public class PassFactoriesTest {
 
-	/*
-	@Before
-	public void setUp() throws Exception {
-		
-	}*/
-
+	@Test
+	public void testDatePassFactoryMonthOk() {
+		Calendar currentDate = Calendar.getInstance();
+		DateStrategy dateStrategy = new MonthStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), TermPassType.MONTH);
+		AbstractPassFactory apf = new DatePassFactory(dateStrategy);
+		Pass pass = apf.getPass();
+		assertTrue(pass instanceof DatePass);
+	}
+	
 	@Test
 	public void testDatePassFactoryStudentOk() {
 		Calendar currentDate = Calendar.getInstance();
-		DateStrategy dateStrategy = new MonthStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), PassType.MONTH_STUDENT);
+		DateStrategy dateStrategy = new MonthStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), TermPassType.MONTH_STUDENT);
 		AbstractPassFactory apf = new DatePassFactory(dateStrategy);
 		Pass pass = apf.getPass();
 		assertTrue(pass instanceof DatePass);
@@ -40,22 +43,13 @@ public class PassFactoriesTest {
 	@Test
 	public void testDatePassFactoryPupilOk() {
 		Calendar currentDate = Calendar.getInstance();
-		DateStrategy dateStrategy = new MonthStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), PassType.MONTH_PUPIL);
+		DateStrategy dateStrategy = new MonthStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), TermPassType.MONTH_PUPIL);
 		AbstractPassFactory apf = new DatePassFactory(dateStrategy);
 		Pass pass = apf.getPass();
 		assertTrue(pass instanceof DatePass);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void testDatePassFactoryMonthStrategyWrongPassType() {
-		Calendar currentDate = Calendar.getInstance();
-		DateStrategy dateStrategy = new MonthStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), PassType.PASSAGES_20);
-		AbstractPassFactory apf = new DatePassFactory(dateStrategy);
-		Pass pass = apf.getPass();
-		assertTrue(pass instanceof DatePass);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NullPointerException.class)
 	public void testDatePassFactoryMonthStrategyNullPassType() {
 		Calendar currentDate = Calendar.getInstance();
 		DateStrategy dateStrategy = new MonthStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), null);
@@ -67,22 +61,13 @@ public class PassFactoriesTest {
 	@Test
 	public void testDatePassFactoryNDaysStrategy() {
 		Calendar currentDate = Calendar.getInstance();
-		DateStrategy dateStrategy = new NDaysStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE), PassType.DAYS_10);
+		DateStrategy dateStrategy = new NDaysStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE), TermPassType.DAYS_10);
 		AbstractPassFactory apf = new DatePassFactory(dateStrategy);
 		Pass pass = apf.getPass();
 		assertTrue(pass instanceof DatePass);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void testDatePassFactoryNDaysStrategyWrongPassType() {
-		Calendar currentDate = Calendar.getInstance();
-		DateStrategy dateStrategy = new NDaysStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE), PassType.ACCUMULATIVE);
-		AbstractPassFactory apf = new DatePassFactory(dateStrategy);
-		Pass pass = apf.getPass();
-		assertTrue(pass instanceof DatePass);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NullPointerException.class)
 	public void testDatePassFactoryNDaysStrategyNullPassType() {
 		Calendar currentDate = Calendar.getInstance();
 		DateStrategy dateStrategy = new NDaysStrategy(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE), null);
@@ -91,29 +76,20 @@ public class PassFactoriesTest {
 		assertTrue(pass instanceof DatePass);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NullPointerException.class)
 	public void testDatePassFactoryNull() {
-		//AbstractPassFactory apf = new DatePassFactory(null);
 		new DatePassFactory(null);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void testNumberOfPassagesFactoryWrongArgument() {
-		AbstractPassFactory apf = new NumberOfPassagesPassFactory(PassType.DAYS_10);
-		Pass pass = apf.getPass();
-		assertTrue(pass instanceof NumberOfPassagesPass);
 	}
 	
 	@Test
 	public void testNumberOfPassagesFactoryOk() {
-		AbstractPassFactory apf = new NumberOfPassagesPassFactory(PassType.PASSAGES_20);
+		AbstractPassFactory apf = new NumberOfPassagesPassFactory(NumberOfPassagesPassType.PASSAGES_20);
 		Pass pass = apf.getPass();
 		assertTrue(pass instanceof NumberOfPassagesPass);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NullPointerException.class)
 	public void testNumberOfPassagesFactoryNull() {
-		//AbstractPassFactory apf = new NumberOfPassagesPassFactory(null);
 		new NumberOfPassagesPassFactory(null);
 	}
 	

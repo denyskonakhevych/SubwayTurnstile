@@ -1,11 +1,11 @@
-package tests;
+package tests.pass;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import pass.AccumulativePass;
+import pass.type.AccumulativePass;
 
 public class AccumulativePassTest {
 
@@ -43,19 +43,19 @@ public class AccumulativePassTest {
 		pass.setPrice(-0.1f);
 	}
 	
-	@Test(expected = IllegalAccessException.class)
-	public void testValidateFails() throws IllegalAccessException {
+	@Test(expected = IllegalStateException.class)
+	public void testValidateFails() {
 		pass.validate();
 	}
 	
 	@Test
-	public void testValidateOk() throws IllegalAccessException {
+	public void testValidateOk() {
 		pass.increaseBalance(2.5f);
 		pass.validate();
 	}
 	
-	@Test(expected = IllegalAccessException.class)
-	public void testValidateFailsNotEnoughMoney() throws IllegalAccessException {
+	@Test(expected = IllegalStateException.class)
+	public void testValidateFailsNotEnoughMoney() {
 		pass.increaseBalance(2.4f);
 		pass.validate();
 	}

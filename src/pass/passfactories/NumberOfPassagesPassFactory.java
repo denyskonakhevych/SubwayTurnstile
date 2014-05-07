@@ -1,16 +1,16 @@
 package pass.passfactories;
 
-import pass.Pass;
-import pass.PassType;
-import pass.NumberOfPassagesPass;
+import pass.passtype.NumberOfPassagesPassType;
+import pass.type.NumberOfPassagesPass;
+import pass.type.Pass;
 
 public class NumberOfPassagesPassFactory extends AbstractPassFactory {
 
-	private PassType type;
+	private NumberOfPassagesPassType type;
 	
-	public NumberOfPassagesPassFactory(PassType type) {
+	public NumberOfPassagesPassFactory(NumberOfPassagesPassType type) {
 		if (type == null || !type.toString().toLowerCase().contains("PASSAGES".toLowerCase())) {
-			throw new IllegalArgumentException("Wrong pass type: " + type);
+			throw new NullPointerException("Wrong pass type: " + type);
 		}
 		this.type = type;
 	}

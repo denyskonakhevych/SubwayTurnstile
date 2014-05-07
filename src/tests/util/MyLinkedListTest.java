@@ -1,4 +1,4 @@
-package tests;
+package tests.util;
 
 import static org.junit.Assert.*;
 import myutil.MyLinkedList;

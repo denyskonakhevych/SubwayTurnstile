@@ -1,7 +1,7 @@
 package pass.passfactories;
 
-import pass.AccumulativePass;
-import pass.Pass;
+import pass.type.AccumulativePass;
+import pass.type.Pass;
 
 public class AccumulativePassFactory extends AbstractPassFactory {
 

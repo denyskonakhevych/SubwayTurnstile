@@ -1,7 +1,10 @@
-package pass;
+package pass.type;
 
-import passages.*;
+<<<<<<< HEAD:src/pass/type/AccumulativePass.java
+import pass.passtype.RegularPassType;
 
+=======
+>>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae:src/pass/AccumulativePass.java
 public class AccumulativePass extends Pass {
 
 	private float balance;
@@ -9,7 +12,7 @@ public class AccumulativePass extends Pass {
 	private float pricePerPassage;
 	
 	public AccumulativePass(int id, float balance, float pricePerPassage) {
-		super(id, PassType.ACCUMULATIVE);
+		super(id, RegularPassType.ACCUMULATIVE);
 		this.balance = balance;
 		this.pricePerPassage = pricePerPassage;
 	}
@@ -39,18 +42,13 @@ public class AccumulativePass extends Pass {
 	}
 
 	@Override
-	public void validate() throws IllegalAccessException {
+	public void validate() {
 		if ((balance - pricePerPassage) < 0) {
 			String message = "Sorry, but there is not enough money on your balance for passage. Current balance: " + balance + " and price for trip is: " + pricePerPassage;
-			throw new IllegalAccessException(message);
+			throw new IllegalStateException(message);
 		} else {
 			balance -= pricePerPassage;
 		}
-	}
-	
-	@Override
-	public Passage makePassage() {
-		return new AccumulativePassage(ID, TYPE, balance, balance);
 	}
 
 	@Override

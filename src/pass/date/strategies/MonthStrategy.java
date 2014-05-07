@@ -2,17 +2,18 @@ package pass.date.strategies;
 
 import java.util.Calendar;
 
-import pass.DatePass;
-import pass.Pass;
-import pass.PassType;
+import pass.passtype.PassType;
+import pass.passtype.TermPassType;
+import pass.type.DatePass;
+import pass.type.Pass;
 
 public class MonthStrategy extends DateStrategy {
 
 	private PassType type;
 	
-	public MonthStrategy(int year, int month, PassType type) {
+	public MonthStrategy(int year, int month, TermPassType type) {
 		if (type == null || !type.toString().toLowerCase().contains("MONTH".toLowerCase())) {
-			throw new IllegalArgumentException("Wrong pass type: " + type);
+			throw new NullPointerException("Wrong pass type: " + type);
 		}
 		this.type = type;
 		startDate = Calendar.getInstance();

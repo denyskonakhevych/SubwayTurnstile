@@ -1,6 +1,6 @@
 package myutil;
 
-public class MyLinkedList<E> {
+public class MyLinkedList<E> implements Cloneable {
 
 	private int size = 0;
 	
@@ -132,7 +132,7 @@ public class MyLinkedList<E> {
 	public int size() {
         return size;
     }
-	
+
 	private static class Node<E> {
 		Node<E> prev;
         E item;

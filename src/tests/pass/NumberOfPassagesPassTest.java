@@ -1,12 +1,12 @@
-package tests;
+package tests.pass;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import pass.NumberOfPassagesPass;
-import pass.PassType;
+import pass.passtype.NumberOfPassagesPassType;
+import pass.type.NumberOfPassagesPass;
 
 public class NumberOfPassagesPassTest {
 
@@ -14,7 +14,7 @@ public class NumberOfPassagesPassTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		pass = new NumberOfPassagesPass(0, PassType.PASSAGES_20);
+		pass = new NumberOfPassagesPass(0, NumberOfPassagesPassType.PASSAGES_20);
 	}
 
 	@Test
@@ -23,21 +23,21 @@ public class NumberOfPassagesPassTest {
 	}
 	
 	@Test
-	public void testDecreaseNumberOfPassagesAfterValidation() throws IllegalAccessException {
+	public void testDecreaseNumberOfPassagesAfterValidation() {
 		pass.validate();
 		assertEquals(pass.getNumberOfPasseges(), 19);
 	}
 	
 	@Test
-	public void testSpendAllPassages() throws IllegalAccessException {
+	public void testSpendAllPassages() {
 		for(int i = 0; i < 20; i++) {
 			pass.validate();
 		}
 		assertEquals(pass.getNumberOfPasseges(), 0);
 	}
 	
-	@Test(expected = IllegalAccessException.class)
-	public void testSpendAllPassagesAndTryValidate() throws IllegalAccessException {
+	@Test(expected = IllegalStateException.class)
+	public void testSpendAllPassagesAndTryValidate()  {
 		for(int i = 0; i < 21; i++) {
 			pass.validate();
 		}
