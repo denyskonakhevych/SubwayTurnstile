@@ -3,8 +3,11 @@ package pass.type;
 import java.util.Calendar;
 
 <<<<<<< HEAD:src/pass/type/DatePass.java
+<<<<<<< HEAD:src/pass/type/DatePass.java
 import pass.passtype.PassType;
 
+=======
+>>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae:src/pass/DatePass.java
 =======
 >>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae:src/pass/DatePass.java
 public class DatePass extends Pass {
@@ -38,13 +41,19 @@ public class DatePass extends Pass {
 		}
 	}
 <<<<<<< HEAD:src/pass/type/DatePass.java
+<<<<<<< HEAD:src/pass/type/DatePass.java
 =======
+=======
+>>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae:src/pass/DatePass.java
 	/*
 	@Override
 	public Passage makePassage() {
 		return new DatePassage(getPassId(), getPassType());
 	}
 	*/
+<<<<<<< HEAD:src/pass/type/DatePass.java
+>>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae:src/pass/DatePass.java
+=======
 >>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae:src/pass/DatePass.java
 
 	@Override

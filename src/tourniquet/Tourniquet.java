@@ -1,6 +1,7 @@
 package tourniquet;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import pass.type.Pass;
 import server.Server;
 
@@ -20,6 +21,15 @@ public class Tourniquet {
 	
 	private MyLinkedList<Passage> passages = new MyLinkedList<>();
 >>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae
+=======
+import myutil.MyLinkedList;
+import pass.Pass;
+import pass.PassType;
+
+public class Tourniquet {
+	
+	private MyLinkedList<Passage> passages = new MyLinkedList<>();
+>>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae
 	
 	public boolean checkPass(Pass pass) {
 		if (pass == null) {
@@ -28,9 +38,15 @@ public class Tourniquet {
 		try {
 			pass.grantPassage();
 <<<<<<< HEAD
+<<<<<<< HEAD
 			server.addPassage(pass.getPassId(), pass.getPassType(), true, pass.toString());
 		} catch (IllegalStateException e) {
 			server.addPassage(pass.getPassId(), pass.getPassType(), false, pass.toString());
+=======
+			passages.add(new Passage(pass.getPassId(), pass.getPassType(), true, pass.toString()));
+		} catch (IllegalAccessException e) {
+			passages.add(new Passage(pass.getPassId(), pass.getPassType(), false, pass.toString()));
+>>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae
 =======
 			passages.add(new Passage(pass.getPassId(), pass.getPassType(), true, pass.toString()));
 		} catch (IllegalAccessException e) {

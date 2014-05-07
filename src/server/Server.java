@@ -1,9 +1,12 @@
 package server;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.concurrent.locks.ReentrantLock;
 
 =======
+=======
+>>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae
 import pass.PassType;
 import tourniquet.Tourniquet;
 >>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae
@@ -90,6 +93,31 @@ public class Server {
 			return "Passage [id=" + id + ", passType=" + passType + ", passed="
 					+ passed + ", message=" + message + "]";
 		}
+	}
+	
+	public int getPassagesNumber() {
+		int totalPassages = 0;
+		for (int i = 0; i < tourniquets.size(); i++) {
+			totalPassages += tourniquets.get(i).getPassagesNumber();
+		}
+		return totalPassages;
+	}
+	
+	public int getPassagesNumber(boolean passed) {
+		
+		int totalPassages = 0;
+		for (int i = 0; i < tourniquets.size(); i++) {
+			totalPassages += tourniquets.get(i).getPassagesNumber(passed);
+		}
+		return totalPassages;
+	}
+	
+	public int getPassagesNumber(boolean passed, PassType passType) {
+		int totalPassages = 0;
+		for (int i = 0; i < tourniquets.size(); i++) {
+			totalPassages += tourniquets.get(i).getPassagesNumber(passed, passType);
+		}
+		return totalPassages;
 	}
 	
 	public int getPassagesNumber() {
