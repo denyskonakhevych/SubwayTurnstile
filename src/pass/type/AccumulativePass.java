@@ -1,13 +1,7 @@
 package pass.type;
 
-<<<<<<< HEAD:src/pass/type/AccumulativePass.java
-<<<<<<< HEAD:src/pass/type/AccumulativePass.java
 import pass.passtype.RegularPassType;
 
-=======
->>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae:src/pass/AccumulativePass.java
-=======
->>>>>>> 2706a1564073d7a7c569705333c2b6aa87a18bae:src/pass/AccumulativePass.java
 public class AccumulativePass extends Pass {
 
 	private float balance;
